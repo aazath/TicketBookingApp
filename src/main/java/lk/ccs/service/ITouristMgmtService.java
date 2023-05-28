@@ -14,4 +14,5 @@ public interface ITouristMgmtService {
 
     public String deleteTouristById(Integer id);
 
+
 }
