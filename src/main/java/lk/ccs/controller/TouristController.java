@@ -1,5 +1,6 @@
 package lk.ccs.controller;
 
+import io.swagger.annotations.ApiOperation;
 import lk.ccs.model.Tourist;
 import lk.ccs.service.ITouristMgmtService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ public class TouristController {
     private ITouristMgmtService service;
 
     @PostMapping("/save")
+    @ApiOperation("For Registering Tourist")
     public ResponseEntity<String> enrollTourist(@RequestBody Tourist tourist) {
         try {
             String msg = service.registerTourist(tourist);
@@ -28,6 +30,7 @@ public class TouristController {
     }
 
     @GetMapping("/findAll")
+    @ApiOperation("For Fetch All Tourist")
     public ResponseEntity<?> displayTouristDetails() {
         try {
             List<Tourist> allTourist = service.getAllTourist();
@@ -38,6 +41,7 @@ public class TouristController {
     }
 
     @GetMapping("/find/{id}")
+    @ApiOperation("For Find a Tourist by ID")
     public ResponseEntity<?> displayTouristyId(@PathVariable("id") Integer id) {
         try {
             Tourist touristById = service.getTouristById(id);
@@ -48,6 +52,7 @@ public class TouristController {
     }
 
     @PutMapping("/modify")
+    @ApiOperation("For Modifying the Tourist Details")
     public ResponseEntity<String> modifyTourist(@RequestBody Tourist tourist) {
         try {
             String msg = service.modifyTourist(tourist);
@@ -58,6 +63,7 @@ public class TouristController {
     }
 
     @PatchMapping("/budgetModify/{id}/{amt}")
+    @ApiOperation("For Updating the Package Details")
     public ResponseEntity<String> updateBudgetById(@PathVariable("id") Integer id,@PathVariable("amt") Float amt) {
         try{
             String msg = service.updateTouristById(id,amt);
@@ -68,6 +74,7 @@ public class TouristController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @ApiOperation("For Deleting a Tourist by ID")
     public ResponseEntity<String> deleteById(@PathVariable("id") Integer id) {
         try{
             String msg = service.deleteTouristById(id);
